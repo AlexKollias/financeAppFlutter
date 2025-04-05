@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:personal_finance_application/secondPage.dart';
+import 'package:personal_finance_application/login_sign_up.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -52,8 +59,8 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Hello '),
-            Text('World'),
-            Text('$counter'),
+            Text('World Counter: '),
+            Text('[$counter]'),
           ],
         ),
       ),
@@ -65,7 +72,7 @@ class MyHomePage extends StatelessWidget {
             print('Attempting to navigate to Secondpage');
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const Secondpage()),
+              MaterialPageRoute(builder: (_) => LoginSignUp()),
             );
           }
         },
